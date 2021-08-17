@@ -34,6 +34,16 @@ public class secondScreen extends AppCompatActivity {
     }
 
     public void navigateToFirstScreen(View view) {
-        this.finish();
+        //this.finish();
+        // Test to fill up the data in the new screen:
+        ArrayAdapter<String> aaPersons =
+                new ArrayAdapter<String>(
+                        getApplicationContext(),
+                        android.R.layout.simple_list_item_1,
+                        persons
+                );
+        System.out.println("persons: "+ persons.toString());
+        ListView lvPersons = (ListView) findViewById(R.id.lvPersons);
+        lvPersons.setAdapter(aaPersons);
     }
 }
