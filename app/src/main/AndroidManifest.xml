@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Javanativepuc">
         <activity
+            android:name=".thirdScreen"
+            android:exported="true" />
+        <activity
+            android:name=".secondScreen"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
