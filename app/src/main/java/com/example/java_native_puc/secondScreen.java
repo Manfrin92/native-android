@@ -19,15 +19,7 @@ public class secondScreen extends AppCompatActivity {
         setContentView(R.layout.activity_second_screen);
         getSupportActionBar().hide();
 
-        ListView lvPersons = (ListView) findViewById(R.id.lvPersons);
 
-        ArrayList<String> persons = new ArrayList<String>();
-        persons.add("Musashi");
-        persons.add("Tolstoi");
-        persons.add("Mario");
-        persons.add("Luigi");
-        ArrayAdapter<String> aaPersons = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, persons);
-        lvPersons.setAdapter(aaPersons);
     }
 
     public void navigateToFirstScreen(View view) {

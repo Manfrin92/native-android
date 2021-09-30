@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,26 +19,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+        ListView lvCountries = (ListView) findViewById(R.id.lvCountries);
+
+        ArrayList<String> countries = new ArrayList<String>();
+        countries.add("Brasil");
+        countries.add("EUA");
+        countries.add("Chile");
+        countries.add("Argentina");
+        countries.add("Colombia");
+        countries.add("Uruguai");
+        countries.add("Venezuela");
+        countries.add("Peru");
+        countries.add("Suriname");
+        countries.add("México");
+        ArrayAdapter<String> aaCountries = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, countries);
+        lvCountries.setAdapter(aaCountries);
+
     }
 
     public void navigate(View view) {
-        // How to display a toast:
-        //Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_LONG).show();
-        // How to obtain input values:
-        EditText etEmail = (EditText) findViewById(R.id.emailAddress);
-        EditText etPassword = (EditText) findViewById(R.id.password);
-        // How to show this text in the toast
-        // Toast.makeText(getApplicationContext(), etEmail.getText(), Toast.LENGTH_LONG).show();
-        if (etEmail != null &&
-                etEmail.getText() != null &&
-                etEmail.getText().length() > 0 &&
-                etPassword != null &&
-                etPassword.getText() != null &&
-                etPassword.getText().length() > 0)
-        {
-            // How to change screen
-            Intent intentSecondScreen = new Intent(this, secondScreen.class);
-            startActivity(intentSecondScreen);
-        }
+        Intent intentSecondScreen = new Intent(this, secondScreen.class);
+        startActivity(intentSecondScreen);
     }
 }
