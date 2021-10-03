@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class secondScreen extends AppCompatActivity {
+    String[] placesToVisit = new String[] {};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,8 @@ public class secondScreen extends AppCompatActivity {
 
         Intent intent = getIntent();
         Country country = (Country)intent.getSerializableExtra("country");
+
+        this.placesToVisit = country.placesToVisit;
 
         TextView president = (TextView) findViewById(R.id.tvPresident);
         president.setText(country.president);
@@ -48,13 +53,56 @@ public class secondScreen extends AppCompatActivity {
 
         ArrayAdapter<String> aaArtists = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, artists);
         lvArtists.setAdapter(aaArtists);
+
+        // list of countries
+        Artist[] artistsInformation = country.artists;
+
+        lvArtists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intentThirdScreen = new Intent(getApplicationContext(), thirdScreen.class);
+                intentThirdScreen.putExtra("artist", artistsInformation[position]);
+                startActivity(intentThirdScreen);
+            }
+        });
     }
 
     public void navigateToFirstScreen(View view) {
         this.finish();
     }
 
+    public void HideAboutContries() {
+        TextView presidentQuestion = (TextView) findViewById(R.id.tvPresidentQuestion);
+        TextView president = (TextView) findViewById(R.id.tvPresident);
+        presidentQuestion.setVisibility(View.INVISIBLE);
+        president.setVisibility(View.INVISIBLE);
+
+        TextView areaQuestion = (TextView) findViewById(R.id.tvAreaQuestion);
+        TextView area = (TextView) findViewById(R.id.tvArea);
+        area.setVisibility(View.INVISIBLE);
+        areaQuestion.setVisibility(View.INVISIBLE);
+
+
+        TextView populationQuestion = (TextView) findViewById(R.id.tvPopulationQuestion);
+        TextView population = (TextView) findViewById(R.id.tvPopulation);
+        population.setVisibility(View.INVISIBLE);
+        populationQuestion.setVisibility(View.INVISIBLE);
+
+        TextView capitalQuestion = (TextView) findViewById(R.id.tvCapitalQuestion);
+        TextView capital = (TextView) findViewById(R.id.tvCapital);
+        capital.setVisibility(View.INVISIBLE);
+        capitalQuestion.setVisibility(View.INVISIBLE);
+
+
+        TextView PIBQuestion = (TextView) findViewById(R.id.tvPIBQuestion);
+        TextView PIB = (TextView) findViewById(R.id.tvPIB);
+        PIB.setVisibility(View.INVISIBLE);
+        PIBQuestion.setVisibility(View.INVISIBLE);
+    }
+
     public void handleShowAboutCountry(View view) {
+        this.HideArtists();
+
         TextView presidentQuestion = (TextView) findViewById(R.id.tvPresidentQuestion);
         TextView president = (TextView) findViewById(R.id.tvPresident);
         if (president.getVisibility() == View.VISIBLE) {
@@ -74,7 +122,6 @@ public class secondScreen extends AppCompatActivity {
             area.setVisibility(View.VISIBLE);
             areaQuestion.setVisibility(View.VISIBLE);
         }
-        
 
         TextView populationQuestion = (TextView) findViewById(R.id.tvPopulationQuestion);
         TextView population = (TextView) findViewById(R.id.tvPopulation);
@@ -85,7 +132,6 @@ public class secondScreen extends AppCompatActivity {
             population.setVisibility(View.VISIBLE);
             populationQuestion.setVisibility(View.VISIBLE);
         }
-        
 
         TextView capitalQuestion = (TextView) findViewById(R.id.tvCapitalQuestion);
         TextView capital = (TextView) findViewById(R.id.tvCapital);
@@ -96,7 +142,6 @@ public class secondScreen extends AppCompatActivity {
             capital.setVisibility(View.VISIBLE);
             capitalQuestion.setVisibility(View.VISIBLE);
         }
-        
 
         TextView PIBQuestion = (TextView) findViewById(R.id.tvPIBQuestion);
         TextView PIB = (TextView) findViewById(R.id.tvPIB);
@@ -107,10 +152,16 @@ public class secondScreen extends AppCompatActivity {
             PIB.setVisibility(View.VISIBLE);
             PIBQuestion.setVisibility(View.VISIBLE);
         }
-        
+    }
+
+    public void HideArtists() {
+        ListView artists = (ListView) findViewById(R.id.lvArtists);
+        artists.setVisibility(View.INVISIBLE);
     }
 
     public void handleShowArtists(View view) {
+        this.HideAboutContries();
+
         ListView artists = (ListView) findViewById(R.id.lvArtists);
         if (artists.getVisibility() == View.VISIBLE) {
             artists.setVisibility(View.INVISIBLE);
@@ -118,4 +169,11 @@ public class secondScreen extends AppCompatActivity {
             artists.setVisibility(View.VISIBLE);
         }
     }
+
+    public void navigateToPlacesToSee(View view) {
+        Intent intentFourthScreen = new Intent(getApplicationContext(), fourthScreen.class);
+        intentFourthScreen.putExtra("placesToVisit", this.placesToVisit);
+        startActivity(intentFourthScreen);
+    }
+
 }

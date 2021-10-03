@@ -5,10 +5,10 @@ import java.io.Serializable;
 public class Artist implements Serializable {
     String name;
     String type;
-    int age;
+    String age;
     String about;
 
-    public Artist(String name, String type, int age, String about) {
+    public Artist(String name, String type, String age, String about) {
         this.name = name;
         this.type = type;
         this.age = age;

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Javanativepuc">
         <activity
+            android:name=".fourthScreen"
+            android:exported="true" />
+        <activity
             android:name=".thirdScreen"
             android:exported="true" />
         <activity
