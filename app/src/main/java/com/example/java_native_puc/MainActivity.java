@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        // Information about countries
         Country brasil = new Country("Brasil", "Bolsonaro", new String[] {"Cristo Redentor", "São Paulo", "Curitba"}, "8.516 million km²",
                 "208 milhões", "Brasília", "1.445 trillion USD", new Artist[] {
                         new Artist("Zé Ramalho", "Músico", 60, "Nascido no nordeste"),
-                        new Artist("Paulo Leminski", "Escritor", 50, "Nascido em Curitiba")
+                        new Artist("Paulo Leminski", "Escritor", 50, "Nascido em Curitiba"),
+                        new Artist("Paulo Coelho", "Escritor", 55, "Nascido no Rio de Janeiro"),
         });
 
         ListView lvCountries = (ListView) findViewById(R.id.lvCountries);
@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity  {
         // list of countries
         Country[] countriesInformation = new Country[] {brasil};
 
-
-
         lvCountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -54,7 +52,6 @@ public class MainActivity extends AppCompatActivity  {
                 startActivity(intentSecondScreen);
             }
         });
-
     }
 
     public void navigate(View view) {
