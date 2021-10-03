@@ -24,16 +24,23 @@ public class MainActivity extends AppCompatActivity  {
                         new Artist("Paulo Leminski", "Escritor", "50", "Nascido em Curitiba"),
                         new Artist("Paulo Coelho", "Escritor", "55", "Nascido no Rio de Janeiro"),
         });
+        Country eua = new Country("EUA", "Biden", new String[] {"Washington", "New York", "Florida"}, "9.834 million km²",
+                "329.5 milhões", "Washington DC", "20.94 trillion USD", new Artist[] {
+                new Artist("Chet Baker", "Músico", "60", "Nascido em Oklahoma"),
+                new Artist("Mac Miller", "Músico", "29", "Nascido em Pittsburgh"),
+                new Artist("Stephen King", "Escritor", "67", "Nascido em Portland, Maine"),
+        });
 
         ListView lvCountries = (ListView) findViewById(R.id.lvCountries);
 
         ArrayList<String> countries = new ArrayList<String>();
         countries.add(brasil.name);
+        countries.add(eua.name);
         ArrayAdapter<String> aaCountries = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, countries);
         lvCountries.setAdapter(aaCountries);
 
         // list of countries
-        Country[] countriesInformation = new Country[] {brasil};
+        Country[] countriesInformation = new Country[] {brasil, eua};
 
         lvCountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
